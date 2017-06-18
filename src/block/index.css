@@ -1,0 +1,27 @@
+.block {
+	height: 500px;
+	width: 100%;
+	background-color: rgba(255, 250, 250, 0.9);
+	margin: 0;
+}
+
+.block > img, a, h3, h4 {
+	display: block;
+}
+
+.block > img {
+	height: 50%;
+	width: 100%;
+}
+
+a, h3, h4 {
+	margin: 5% 0 0 15%;
+	clear: right;
+}
+
+li {
+	/*padding-left: 4em; */
+	display: inline-block;
+	margin-top: 1em;
+
+}

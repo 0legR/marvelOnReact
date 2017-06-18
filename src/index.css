@@ -1,0 +1,61 @@
+body {
+	background-image: url('./img/m_back.jpg');
+	background-repeat: repeat-x;
+}
+
+.main {
+	height: 50em;
+	width: 100%;
+	background-color: rgba(28, 28, 28, 0.5);
+}
+
+.header {
+	background: linear-gradient(to bottom right, #CFCFCF, #696969, #1C1C1C);
+	text-align: center;
+	height: 7em;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
+	border-radius: 0 0 10px 10px;
+}
+
+.header .page-header {
+	margin-top: -5px;
+}
+
+.header small {
+	color: #F0FFFF;	
+}
+
+.footer {
+	height: 100px;
+	width: 100%;
+	clear: both;
+	position: fixed;
+	z-index: 1;
+	bottom: 0;
+	left: 0;
+	margin-bottom: -50px;
+	color: #FF7256;
+	text-align: center;
+}
+
+.footer .panel {
+	border-radius: 10px 10px 0 0;
+	background-color: rgba(28, 28, 28, 0.8);
+
+}
+
+.search {
+	margin-top: 20em;
+}
+
+.search .input-group {
+	z-index: 0;
+}
+
+.dropdown {
+	margin: 25% 0% 1% 0%;
+	width: 15em;
+	height: 50px;
+}

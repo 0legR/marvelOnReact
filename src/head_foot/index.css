@@ -1,0 +1,18 @@
+.dropup {
+	border: 1px solid rgba(250, 250, 250, 0.8);
+	border-radius: 20px;
+	background-color: transparent;
+	color: rgb(250, 250, 250);
+	width: 100%;
+	height: 100%;
+	outline-style: none;
+	font-size: 18px;
+	letter-spacing: 2px;
+	font-weight: 200;
+}
+
+.dropup:hover, .dropup:active, .dropup:focus {
+	border: 1px solid rgba(127, 255, 212, 0.8);
+	color: rgb(127, 255, 212);
+	outline-style: none;
+}

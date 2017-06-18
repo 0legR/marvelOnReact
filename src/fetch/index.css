@@ -1,0 +1,18 @@
+h1 {
+	color: red;
+}
+
+.result {
+	margin: 450px 0 60px 0;
+	/*padding: 0 4em;*/
+}
+
+.static-modal .title {
+	color: red;
+	text-align: center;
+}
+
+.modal {
+	font-family: "Lucida Console", Monaco, monospace;
+	background-color: rgba(28, 28, 28, 0.5)!important; 
+}
