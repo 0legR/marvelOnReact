@@ -28,16 +28,67 @@ export default class Page extends React.Component {
 		let data = this.state.data;
 
 		return (
-			<div>
+			<div className="contain row">
 				<div className="header">{HEADER}</div>
 				<div className="page">
+					<div className="headUl col-sm-12"><h2>Detail info about {data.name}</h2></div>
 					<img src={imgPath.path+'.'+imgPath.extension} alt={data.name}/>
-					<h2><span>The hero`s name is </span>{data.name}</h2>
-					<h3><span>The hero`s id is </span>{data.id}</h3>
-					<h4><span>The hero modified in </span>{data.modified}</h4>
-					<p><span>Description => </span>{data.description}</p>
-					<h4><span>Modified =></span> {data.modified}</h4>
-					<a href={data.resourceURI}>U can visit "Original resource"</a>
+					<ul>
+						<li className="col-sm-12">
+							<div className="leftBox">The hero`s name is =></div>
+							<div className="rightBox">{data.name}</div>
+						</li>
+						<li className="col-sm-12">
+							<div className="leftBox">Description =></div>
+							<div className="rightBox">{data.description}</div>
+						</li>
+						<li className="col-sm-12">
+							<div className="leftBox">The hero`s id is =></div>
+							<div className="rightBox">{data.id}</div>
+						</li>
+						<li className="col-sm-12">
+							<div className="leftBox">The hero modified in =></div>
+							<div className="rightBox">{data.modified}</div>
+						</li>
+						<li className="col-sm-12">
+							<div className="leftBox">U can visit =></div>
+							<div className="rightBox">
+								<a href={data.resourceURI} target="_blank">Original resource on Marvel</a>
+							</div>
+						</li>
+						<li className="col-sm-12">
+							<div className="leftBox">{data.name}`s comics =></div>
+							<div className="rightBox">
+								<ul>
+									<li>
+										<div className="leftBox">Available comics =></div>
+										<div className="rightBox">{data.comics.available}</div>
+									</li>
+									<hr />
+									<li>
+										<div className="leftBox">Comics Collection =></div>
+										<div className="rightBox">
+											<a href={data.collectionURI}>Original resource on Marvel</a>
+										</div>
+									</li>
+									<hr />
+									<li>
+										<div className="leftBox">Items comics =></div>
+										<div className="rightBox">{data.comics.items.map((item, key) => {
+											return <li key={key}>{item}</li>
+										})}</div>
+									</li>
+									<hr />
+									<li>
+										<div className="leftBox">Comics returned =></div>
+										<div className="rightBox">{data.comics.returned}</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+
+					
 
 					<Link to="/" onClick={this.addBodyImg()} >Back to Main</Link>
 				</div>

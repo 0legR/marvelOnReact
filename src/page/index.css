@@ -1,12 +1,16 @@
-.page {
-	height: 200%;
-	width: 60%;
-	background-color: rgba(255, 250, 250, 0.9);
-	margin: auto;
-	/*margin-top: em;*/
+.contain {
+	width: 100%;
+	margin-bottom: 10em;
 }
 
-.page > img, a, h3, h4, h2, p {
+.page {
+	height: 100%;
+	width: 60%;
+	margin: auto;
+	margin-top: 7em;
+}
+
+.page > img {
 	display: block;
 }
 
@@ -15,9 +19,84 @@
 	width: 100%;
 }
 
-a, h3, h4, h2, p {
+/*a, h3, h4, h2, p {
 	margin: 5% 0 0 15%;
 	clear: right;
+}*/
+.headUl {
+	background-color: rgba(176, 196, 222, 0.9);
+	text-align: center;
+	color: #FF7256;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 18px;
+	height:5em;
+}
+.headUl > h2 {
+	margin: auto;
+	padding-top: 0.3em;
+	border-bottom: 1px solid #FF7256;
+}
+
+.page ul {
+	padding: 0;
+	margin: 0;
+}
+
+.page li {
+	display: flex;
+	background-color: rgba(255, 250, 250, 0.9);
+	padding: 15px 30px;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 18px;
+	margin:0 0 1px 0;
+}
+
+.page li div {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+.page li a {
+	margin: 0;
+}
+
+.leftBox {
+	/*margin-left: 10%;*/
+	width: 35%;
+	color: #000080;
+	text-align: left;
+}
+
+.rightBox {
+	/*margin: auto;*/
+	width: 65%;
+	color: #FF7256;
+	text-align: left;
+
+}
+.rightBox a {
+	color: #FF7256;
+}
+
+.page li ul li .leftBox {
+	width: 40%;
+	color: #CD5C5C;
+	text-align: left;
+}
+
+.page li ul li .rightBox {
+	width: 60%;
+	color: #AB82FF;
+	text-align: right;
+
+}
+.page li ul li a {
+	color: #AB82FF;
+} 
+
+.page li ul li {
+	padding: 0;
 }
 
 .header {
