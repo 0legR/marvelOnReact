@@ -21,42 +21,43 @@ class Search extends React.Component {
 		};
 		this.handleClick = this.handleClick.bind(this);
 		this.handlerCheck = this.handlerCheck.bind(this);
+		this.handleClickKeypress = this.handleClickKeypress.bind(this);
 		
 	}
 
 	handleClick() {
-		let self = this;
-		let key = '89129af654601343357294496c526cfd';
-		let url = 'https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=';
+			let self = this;
+			let key = '89129af654601343357294496c526cfd';
+			let url = 'https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=';
 
-		if (!this.state.searchIsEmpty) {
-			fetch(url+this.state.inputValue+'&limit=3&apikey='+key)
-				.then(r => r.json())
-				.then(r => (self.setState({...r.data})))
-				.then(function() {
-						if (self.state.count !== 0) {
-							ReactDOM.findDOMNode(self.refs.bottomBlocks).scrollIntoView(false);
+			if (!this.state.searchIsEmpty) {
+				fetch(url+this.state.inputValue+'&limit=3&apikey='+key)
+					.then(r => r.json())
+					.then(r => (self.setState({...r.data})))
+					.then(function() {
+							if (self.state.count !== 0) {
+								ReactDOM.findDOMNode(self.refs.blocks).scrollIntoView(false);
 
-						}else{
-							return ReactDOM.render(
-								<WrongInput
-									title="Something Wrong"
-									body={"Incidentally, U`ve inputed the name of Marvel`s Hero with mistake.\nPlease keep trying!"}
-								/>,
-								document.getElementById('container')
-							);
+							}else{
+								return ReactDOM.render(
+									<WrongInput
+										title="Something Wrong"
+										body={"Incidentally, U`ve inputed the name of Marvel`s Hero with mistake.\nPlease keep trying!"}
+									/>,
+									document.getElementById('container')
+								);
+							}
 						}
-					}
+					);
+			}else{
+				return ReactDOM.render(
+					<WrongInput
+						title="Input Search is empty!"
+						body="Incidentally, U've forgotten input the name of Marvel`s Hero"
+					/>,
+					document.getElementById('container')
 				);
-		}else{
-			return ReactDOM.render(
-				<WrongInput
-					title="Input Search is empty!"
-					body="Incidentally, U've forgotten input the name of Marvel`s Hero"
-				/>,
-				document.getElementById('container')
-			);
-		}
+			}
 	}
 
 	handlerCheck(stateItem, e) {
@@ -70,6 +71,13 @@ class Search extends React.Component {
 			this.setState({
 				searchIsEmpty: true,
 			});
+		};
+	}
+
+	handleClickKeypress(event) {
+		// console.log(event.keyCode);
+		if (event.keyCode === 13) {
+				this.handleClick();
 		};
 	}
 
@@ -87,8 +95,10 @@ class Search extends React.Component {
 			        <FormControl
 			        	type="text"
 			        	onChange={this.handlerCheck.bind(this, 'searchIsEmpty')}
+			        	onKeyDown={this.handleClickKeypress} 
 			        	defaultValue=""
-			        	ref="heroName" />
+			        	ref="heroName"
+			        	id="heroName" />
 			        <InputGroup.Addon onClick={this.handleClick}>Start</InputGroup.Addon>
 		    	</InputGroup>
 		    </FormGroup>
@@ -98,7 +108,6 @@ class Search extends React.Component {
 					})
 				}
 			</ul>
-		    <div ref='bottomBlocks'>Head of blocks</div>
 		    </div>
 		);
 	}
