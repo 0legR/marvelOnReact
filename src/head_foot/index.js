@@ -9,7 +9,7 @@ import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 
 
 export const HEADER = (
-	<PageHeader>Marvel`s heroes & comics <small>keep finding your favorite hero</small></PageHeader>
+	<PageHeader>Marvel`s heroes & comics <small>keep finding on your favorite hero</small></PageHeader>
 );
 
 export const FOOTER = (
@@ -28,6 +28,10 @@ export const buttonsInstance = (
     </ButtonToolbar>
 );
 
-export const DROPUP = (
-	<button className="dropup">DropUp</button>
-);
+export default class DropUP extends React.Component {
+  render() {
+    return (
+      <button className="dropup">{this.props.name}</button>
+    );
+  }
+}

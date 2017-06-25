@@ -15,4 +15,6 @@
 	border: 1px solid rgba(255, 0, 0, 0.8);
 	color: rgb(255, 0, 0);
 	outline-style: none;
+	box-shadow: 1px 1px 20px #7CFC00;
+
 }

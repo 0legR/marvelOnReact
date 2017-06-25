@@ -1,4 +1,4 @@
-body {
+.body {
 	background-image: url('./img/m_back.jpg');
 	background-repeat: repeat-x;
 }
@@ -55,7 +55,12 @@ body {
 }
 
 .dropdown {
-	margin: 25% 0% 1% 0%;
+	/*margin: 25% 0% 1% 0%;*/
 	width: 15em;
 	height: 50px;
+	clear: both;
+	margin: 0;
+	position: relative;
+	left: 40%;
+	padding: 3px;
 }

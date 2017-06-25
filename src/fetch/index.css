@@ -16,3 +16,9 @@ h1 {
 	font-family: "Lucida Console", Monaco, monospace;
 	background-color: rgba(28, 28, 28, 0.5)!important; 
 }
+
+.startBut.active, .startBut:hover {
+	background-color: #FF7256;
+	box-shadow: 10px 1px 20px #7CFC00;
+	color: #F0FFF0; 
+}

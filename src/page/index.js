@@ -1,32 +1,38 @@
 import React from 'react';
-// import ReactDom from 'react-dom';
-import {HEADER, FOOTER} from '../head_foot/index';
+// import ReactDOM from 'react-dom';
+import DropUp, {HEADER, FOOTER} from '../head_foot/index';
 import { Link } from 'react-router-dom';
+import Block from '../block';
 import './index.css';
+import Hamburger from './components/humburger';
+import Description from './components/description';
 
 export default class Page extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: this.props.location.state.data
+			data: this.props.location.state.data,
+			fullData: this.props.location.state.fullData
 		};
+		this.store = this.store.bind(this);
 	}
 
-	moveBodyImg() {
-		let body = document.body;
-		body.style.backgroundImage = 'none';
-	}
-
-	addBodyImg() {
-		let body = document.body;
-		body.style.backgroundImage = "url(./img/m_back.jpg)";
-		// console.log(body.style.backgroundImage);
+	store() {
+		const FullData = this.state.fullData;
+		return FullData;
 	}
 
 	render() {
 		let imgPath = this.state.data.thumbnail;
 		let data = this.state.data;
+		let location = {
+			pathname: '/',
+			returnedData: {data: this.state.fullData}
+		};
+		let store = this.store;
 
+// console.log(this.state.fullData);
+// console.log(data);
 		return (
 			<div className="contain row">
 				<div className="header">{HEADER}</div>
@@ -38,10 +44,7 @@ export default class Page extends React.Component {
 							<div className="leftBox">The hero`s name is =></div>
 							<div className="rightBox">{data.name}</div>
 						</li>
-						<li className="col-sm-12">
-							<div className="leftBox">Description =></div>
-							<div className="rightBox">{data.description}</div>
-						</li>
+						<Description data={data} />
 						<li className="col-sm-12">
 							<div className="leftBox">The hero`s id is =></div>
 							<div className="rightBox">{data.id}</div>
@@ -53,44 +56,29 @@ export default class Page extends React.Component {
 						<li className="col-sm-12">
 							<div className="leftBox">U can visit =></div>
 							<div className="rightBox">
-								<a href={data.resourceURI} target="_blank">Original resource on Marvel</a>
+								<a href={data.resourceURI}
+									target="_blank"
+									rel="noopener noreferrer">
+									Original resource at Marvel
+								</a>
 							</div>
 						</li>
-						<li className="col-sm-12">
-							<div className="leftBox">{data.name}`s comics =></div>
-							<div className="rightBox">
-								<ul>
-									<li>
-										<div className="leftBox">Available comics =></div>
-										<div className="rightBox">{data.comics.available}</div>
-									</li>
-									<hr />
-									<li>
-										<div className="leftBox">Comics Collection =></div>
-										<div className="rightBox">
-											<a href={data.collectionURI}>Original resource on Marvel</a>
-										</div>
-									</li>
-									<hr />
-									<li>
-										<div className="leftBox">Items comics =></div>
-										<div className="rightBox">{data.comics.items.map((item, key) => {
-											return <li key={key}>{item}</li>
-										})}</div>
-									</li>
-									<hr />
-									<li>
-										<div className="leftBox">Comics returned =></div>
-										<div className="rightBox">{data.comics.returned}</div>
-									</li>
-								</ul>
-							</div>
-						</li>
+						<Hamburger data={data} />
+
 					</ul>
 
 					
 
-					<Link to="/" onClick={this.addBodyImg()} >Back to Main</Link>
+					<Link to={location} className="dropdown"><DropUp name="Go Back" /></Link>
+				</div>
+				<div className="col-sm-8">
+					<div className="headBlockItem"><h1>Other found heroes</h1></div>
+					<div className="blockItem">
+					{this.state.fullData.map((item, key) => {
+						return <Block key={key} keyItem={'blockN'+key} data={item} fullData={store()} />
+						})
+					}
+					</div>
 				</div>
 				<div className="footer">{FOOTER}</div>
 			</div>
@@ -98,16 +86,3 @@ export default class Page extends React.Component {
 		
 	}
 }
-
-// return (
-// 			<div className="main row">
-// 				<div className="header" onLoad={this.moveBodyImg()}>{HEADER}</div>
-// 				<div className="page">
-// 					<img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/537bc71e9286f.jpg" alt="img" />
-					// <Link to="/" onClick={this.addBodyImg()} >Back to Main</Link>
-// 					<h3>Tor here is</h3>
-// 				</div>
-// 				<div className="footer">{FOOTER}</div>
-// 			</div>
-// 		);
-		

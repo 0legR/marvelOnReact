@@ -8,15 +8,23 @@ class Block extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: this.props.data
+			data: this.props.data,
+			fullData: this.props.fullData,
+			key: this.props.keyItem
 		};
 	}
 
 	render() {
-		let imgPath = this.state.data.thumbnail;
+		let imgPath = this.state.data.thumbnail,
+			key = this.state.key,
+			pathname = '/page/$'+key;
+			// console.log(pathname);
 		let location = {
-			pathname: '/page',
-			state: {data: this.state.data}
+			pathname: pathname,
+			state: {
+				data: this.state.data,
+				fullData: this.state.fullData
+			}
 		};
 		return (
 			<li className="col-sm-4 col-md-4 col-lg-4">

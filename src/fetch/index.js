@@ -22,6 +22,7 @@ class Search extends React.Component {
 		this.handleClick = this.handleClick.bind(this);
 		this.handlerCheck = this.handlerCheck.bind(this);
 		this.handleClickKeypress = this.handleClickKeypress.bind(this);
+		this.store = this.store.bind(this);
 		
 	}
 
@@ -59,6 +60,10 @@ class Search extends React.Component {
 				);
 			}
 	}
+	store() {
+		const FullData = this.state.results;
+		return FullData;
+	}
 
 	handlerCheck(stateItem, e) {
 		let item = ReactDOM.findDOMNode(this.refs.heroName).value;
@@ -86,7 +91,7 @@ class Search extends React.Component {
 	}
 
 	render() {
-
+		let store = this.store;
 		return (
 			<div>
 			<FormGroup>
@@ -99,12 +104,12 @@ class Search extends React.Component {
 			        	defaultValue=""
 			        	ref="heroName"
 			        	id="heroName" />
-			        <InputGroup.Addon onClick={this.handleClick}>Start</InputGroup.Addon>
+			        <InputGroup.Addon onClick={this.handleClick} className="startBut">Start</InputGroup.Addon>
 		    	</InputGroup>
 		    </FormGroup>
 		    <ul className="result col-xs-12" ref="blocks">
 				{this.state.results.map((item, key) => {
-					return <Block key={key} data={item}/>
+					return <Block key={key} data={item} keyItem={'blockN'+key} fullData={store()} />
 					})
 				}
 			</ul>

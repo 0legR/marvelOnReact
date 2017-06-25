@@ -1,3 +1,25 @@
+.blockItem {
+
+}
+
+.headBlockItem {
+	text-align: center;
+	/*color: transparent;*/
+	text-shadow: 2px -5px 5px rgba(108, 123, 139, 0.5);
+}
+.headBlockItem h1 {
+	font-size: 80px;
+	background: -webkit-linear-gradient(#000080, #FF7256);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+}
+
+.headBlockItem, .blockItem {
+	position: relative;
+	left:25%;
+}
+
 .contain {
 	width: 100%;
 	margin-bottom: 10em;
@@ -8,6 +30,7 @@
 	width: 60%;
 	margin: auto;
 	margin-top: 7em;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .page > img {
@@ -35,6 +58,7 @@
 	margin: auto;
 	padding-top: 0.3em;
 	border-bottom: 1px solid #FF7256;
+	text-shadow: 2px 2px 4px #000000;
 }
 
 .page ul {
@@ -66,14 +90,14 @@
 	width: 35%;
 	color: #000080;
 	text-align: left;
+	text-shadow: 2px 2px 4px #FF7256;
 }
 
 .rightBox {
 	/*margin: auto;*/
 	width: 65%;
 	color: #FF7256;
-	text-align: left;
-
+	text-align: right;
 }
 .rightBox a {
 	color: #FF7256;
@@ -97,6 +121,46 @@
 
 .page li ul li {
 	padding: 0;
+}
+
+.page li ul {
+	margin-top: 35px;
+}
+.hamItemLeftBox, .hamItemRightBox {
+	font-size: 12px;
+}
+.hamItemLeftBox {
+	text-align: left;
+}
+
+.hamItemRightBox{
+	text-align: right;
+}
+.overflowUl {
+	overflow: auto;
+	border: 1px solid black;
+	height:200px;
+	width: 100%;
+}
+
+.dropDown {
+	/*display: none;*/
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height .5s ease-out;
+}
+
+.bars:hover, .bars.active{
+	cursor: pointer;
+	color: #FF0000;
+	font-size: 40px;
+
+}
+
+.hamburger {
+	background-color: transparent;
+	border: none;
+	outline: 0;
 }
 
 .header {
