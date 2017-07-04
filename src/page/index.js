@@ -1,5 +1,6 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import DropUp, {HEADER, FOOTER} from '../head_foot/index';
 import { Link } from 'react-router-dom';
 import Block from '../block';
@@ -7,29 +8,30 @@ import './index.css';
 import Hamburger from './components/humburger';
 import Description from './components/description';
 
-export default class Page extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			data: this.props.location.state.data,
-			fullData: this.props.location.state.fullData
-		};
-		this.store = this.store.bind(this);
-	}
+class Page extends React.Component {
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		data: this.props.location.state.data,
+	// 		fullData: this.props.location.state.fullData
+	// 	};
+	// 	this.store = this.store.bind(this);
+	// }
 
-	store() {
-		const FullData = this.state.fullData;
-		return FullData;
-	}
+	// store() {
+	// 	const FullData = this.state.fullData;
+	// 	return FullData;
+	// }
+	componentDidUpdate = () => { ReactDOM.findDOMNode(this).scrollIntoView(); }
 
 	render() {
-		let imgPath = this.state.data.thumbnail;
-		let data = this.state.data;
-		let location = {
-			pathname: '/',
-			returnedData: {data: this.state.fullData}
-		};
-		let store = this.store;
+		let imgPath = this.props.location.state.blockData.thumbnail;
+		let data = this.props.location.state.blockData;
+		// let location = {
+		// 	pathname: '/',
+		// 	returnedData: {data: this.state.fullData}
+		// };
+		// let store = this.store;
 
 // console.log(this.state.fullData);
 // console.log(data);
@@ -69,15 +71,14 @@ export default class Page extends React.Component {
 
 					
 
-					<Link to={location} className="dropdown"><DropUp name="Go Back" /></Link>
+					<Link to="/" className="dropdown"><DropUp name="Go Back" /></Link>
 				</div>
 				<div className="col-sm-8">
 					<div className="headBlockItem"><h1>Other found heroes</h1></div>
 					<div className="blockItem">
-					{this.state.fullData.map((item, key) => {
-						return <Block key={key} keyItem={'blockN'+key} data={item} fullData={store()} />
-						})
-					}
+					{this.props.data.results.map((item, index) =>
+						<Block key={index} data={item} />
+					)}
 					</div>
 				</div>
 				<div className="footer">{FOOTER}</div>
@@ -86,3 +87,10 @@ export default class Page extends React.Component {
 		
 	}
 }
+
+export default connect(
+	state => ({
+		data: state.dataStore 
+	}),
+	null
+)(Page);

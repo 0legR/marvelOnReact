@@ -6,6 +6,7 @@ import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Block from '../block';
 import WrongInput from './wrongInput';
+import { connect } from 'react-redux';
 
 class Search extends React.Component {
 	constructor(props) {
@@ -22,7 +23,7 @@ class Search extends React.Component {
 		this.handleClick = this.handleClick.bind(this);
 		this.handlerCheck = this.handlerCheck.bind(this);
 		this.handleClickKeypress = this.handleClickKeypress.bind(this);
-		this.store = this.store.bind(this);
+		// this.store = this.store.bind(this);
 		
 	}
 
@@ -34,9 +35,10 @@ class Search extends React.Component {
 			if (!this.state.searchIsEmpty) {
 				fetch(url+this.state.inputValue+'&limit=3&apikey='+key)
 					.then(r => r.json())
-					.then(r => (self.setState({...r.data})))
+					// .then(r => (self.setState({...r.data})))
+					.then(r => this.props.onAddData({...r.data}))
 					.then(function() {
-							if (self.state.count !== 0) {
+							if (self.props.data.count !== 0) {
 								ReactDOM.findDOMNode(self.refs.blocks).scrollIntoView(false);
 
 							}else{
@@ -60,10 +62,10 @@ class Search extends React.Component {
 				);
 			}
 	}
-	store() {
-		const FullData = this.state.results;
-		return FullData;
-	}
+	// store() {
+	// 	const FullData = this.state.results;
+	// 	return FullData;
+	// }
 
 	handlerCheck(stateItem, e) {
 		let item = ReactDOM.findDOMNode(this.refs.heroName).value;
@@ -91,31 +93,42 @@ class Search extends React.Component {
 	}
 
 	render() {
-		let store = this.store;
+		// let store = this.store;
 		return (
 			<div>
-			<FormGroup>
-		    	<InputGroup>
-			        <InputGroup.Addon>Input Marvel`s Hero {this.state.total}</InputGroup.Addon>
-			        <FormControl
-			        	type="text"
-			        	onChange={this.handlerCheck.bind(this, 'searchIsEmpty')}
-			        	onKeyDown={this.handleClickKeypress} 
-			        	defaultValue=""
-			        	ref="heroName"
-			        	id="heroName" />
-			        <InputGroup.Addon onClick={this.handleClick} className="startBut">Start</InputGroup.Addon>
-		    	</InputGroup>
-		    </FormGroup>
-		    <ul className="result col-xs-12" ref="blocks">
-				{this.state.results.map((item, key) => {
-					return <Block key={key} data={item} keyItem={'blockN'+key} fullData={store()} />
-					})
-				}
-			</ul>
+				<FormGroup>
+			    	<InputGroup>
+				        <InputGroup.Addon>Input Marvel`s Hero {this.props.data.total}</InputGroup.Addon>
+				        <FormControl
+				        	type="text"
+				        	onChange={this.handlerCheck.bind(this, 'searchIsEmpty')}
+				        	onKeyDown={this.handleClickKeypress} 
+				        	defaultValue=""
+				        	ref="heroName"
+				        	id="heroName" />
+				        <InputGroup.Addon onClick={this.handleClick} className="startBut">Start</InputGroup.Addon>
+			    	</InputGroup>
+			    </FormGroup>
+			    <ul className="result col-xs-12" ref="blocks">
+					{this.props.data.results.map((item, index) => 
+						<Block key={index} data={item} />
+					)}
+				</ul>
 		    </div>
 		);
 	}
 }
 
-export default Search;
+export default connect(
+	state => ({
+		data: state.dataStore
+	}),
+	dispatch => ({
+		onAddData: (data) => {
+			dispatch({
+				type: 'ADD_HEROES',
+				data
+			})
+		}
+	})
+)(Search);

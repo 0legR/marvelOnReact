@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import DropUp, {HEADER, FOOTER} from './head_foot/index';
 import Search from './fetch/index.js';
 
-export default class Home extends Component {
+class Home extends Component {
+
+	componentDidUpdate = () => { ReactDOM.findDOMNode(this).scrollIntoView(); }
 
 	render() {
 		return (
@@ -22,3 +26,10 @@ export default class Home extends Component {
 		);
 	}
 }
+
+export default connect(
+	state => ({
+		data: state.dataStore
+	}),
+	null
+)(Home);
