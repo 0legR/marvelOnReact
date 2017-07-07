@@ -1,10 +1,10 @@
 .body {
 	background-image: url('./img/m_back.jpg');
-	background-repeat: repeat-x;
+	/*background-repeat: repeat-x;*/
 }
 
 .main {
-	height: 50em;
+	height: 53em;
 	width: 100%;
 	background-color: rgba(28, 28, 28, 0.5);
 }
@@ -38,6 +38,7 @@
 	margin-bottom: -50px;
 	color: #FF7256;
 	text-align: center;
+	/*display: none;*/
 }
 
 .footer .panel {
@@ -55,12 +56,10 @@
 }
 
 .dropdown {
-	/*margin: 25% 0% 1% 0%;*/
-	width: 15em;
-	height: 50px;
 	clear: both;
 	margin: 0;
-	position: relative;
-	left: 40%;
 	padding: 3px;
+	position: relative;
+	bottom: 0em;
+	left: 35%;
 }
